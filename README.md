@@ -1,24 +1,11 @@
-# README
+# myRecipes
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Infinite scrolling recipe feed
 
-Things you may want to cover:
+Scrapes 1000 recipes from food.com mobile API via db:seed - this can be changed inside `db/seeds.rb`
 
-* Ruby version
+Shows images, recipe names, descriptions, and links to food.com.
 
-* System dependencies
+Simple SQL-based searching function
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+UI made with jQuery and Semantic UI

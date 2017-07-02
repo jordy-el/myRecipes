@@ -11,7 +11,7 @@ require 'open-uri'
 # Initial connection to Solr
 rsolr_search = RSolr.connect url: "http://www.food.com/services/mobile/fdc/search"
 
-(1..10000).each do |page|
+(1..100).each do |page|
   # Search for successive result pages
   page = rsolr_search.get 'sectionfront', params: {
     pn: page.to_s,
