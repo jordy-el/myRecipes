@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>myRecipes</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body style="padding-top: 35px;">
+    <div class="ui fixed menu">
+      <a class="ui item" id="home">myRecipes</a>
+      <div class="right menu">
+        <div class="item">
+          <div class="ui action left icon input">
+            <i class="search icon"></i>
+            <input name="search" id="search" type="text" placeholder="Search" autofocus></input>
+            <button class="ui button" id="submit">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ui main grid container">
+      <%= yield %>
+    </div>
+    <%= paginate @recipes %>
+    <script>
+      $('.recipe-container').infiniteScroll({
+        path: '.pagination__next',
+        append: '.recipe',
+        history: false,
+      });
+    </script>
+  </body>
+</html>

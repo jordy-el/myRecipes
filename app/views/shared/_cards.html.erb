@@ -1,0 +1,21 @@
+<div class="column">
+  <div class="ui three cards recipe-container">
+    <% @recipes.each do |r| %>
+      <div class="ui fluid raised card recipe">
+        <a class="image" target="_blank" href="<%= r.url %>">
+          <img src="<%= r.image =~ /image\.sendimg\.com/ ? r.image[0..38] + "/fl_progressive,w_308,h_231,c_fill,q_92" + r.image[39..-1] : r.image %>">
+        </a>
+        <div class="content">
+          <div class="header"><%= r.name %></div>
+          <div class="meta">
+            <% if r.description %>
+              <%= r.description[0..140] %>
+            <% else %>
+              No description
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
