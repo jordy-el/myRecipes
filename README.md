@@ -8,4 +8,6 @@ Infinite scrolling recipe feed
 
 * Simple SQL-based searching function
 
+* Shuffled query results (only works on PostgreSQL)
+
 * UI made with jQuery and Semantic UI
