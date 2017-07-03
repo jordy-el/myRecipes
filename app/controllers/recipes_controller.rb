@@ -4,13 +4,25 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
+    if Rails.env.production?
+      seed_val = Recipe.connection.quote(cookies[:rand_seed])
+      Recipe.connection.execute("select setseed(#{seed_val})")
+    end
     if params[:q] && params[:q].length > 0
       @queries = create_search_queries(params[:q].split.map { |string| "%" + string + "%" })
-      @recipes = Recipe.where(@queries[0]).or(Recipe.where(@queries[1])).page(params[:page])
+      if Rails.env.production?
+        @recipes = Recipe.where(@queries[0]).or(Recipe.where(@queries[1])).order('random()').page(params[:page])
+      else
+        @recipes = Recipe.where(@queries[0]).or(Recipe.where(@queries[1])).page(params[:page])
+      end
     elsif params[:q] && params[:q].length == 0
       redirect_to root_path
     else
-      @recipes = Recipe.all.page(params[:page])
+      if Rails.env.production?
+        @recipes = Recipe.all.order('random()').page(params[:page])
+      else
+        @recipes = Recipe.all.page(params[:page])
+      end
     end
   end
 
